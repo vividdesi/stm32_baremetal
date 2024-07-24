@@ -3,13 +3,13 @@
 #include "stm32f401xe.h"  // CMSIS Cortex-M Peripheral Access Layer
 void delay(void)
 {
-    for (int i = 0; i < 100; i++) // Adjust delay length for your clock speed
+    for (int i = 0; i < 100; i++) // Adjust delay length
     for (int j = 0; j < 255; j++);
 }
 int main(void)
 {
     // Enable GPIOA and GPIOB clock
-    RCC->AHB1ENR |= (3<<0);//
+    RCC->AHB1ENR |= (3<<0);
 
     // Configure PA2,PA3 as input mode (switch)
     GPIOA->MODER &= ~(15<<26);
@@ -25,6 +25,7 @@ int main(void)
     GPIOB->MODER &= ~ (3<<0);
     GPIOA->MODER |= (5<<0)|(1<<8);//Configuring pin as output at portA
     GPIOB->MODER |=(1<<0);//Configuring pin as output at portB
+    //Configuring PA0,PA1,PA4,PB0 as Low
     GPIOA->ODR &=~(1<<0);//PA0
     GPIOA->ODR &=~(1<<1);//PA1
     GPIOA->ODR &=~(1<<4);//PA4
